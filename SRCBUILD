@@ -1,0 +1,19 @@
+DEPENDS ::
+    gettext-git
+    git-git
+    glibc-git
+
+PREPARE ::
+    check DEPENDS
+    fetch https://savannah.nongnu.org/projects/attr
+
+BUILD ::
+    goto attr
+        ./autogen.sh
+        ./configure --prefix="/usr"
+        make
+        make check
+
+INSTALL ::
+    goto attr
+        make DESTDIR="$PWD" install
